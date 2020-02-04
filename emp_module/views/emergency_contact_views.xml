@@ -1,0 +1,20 @@
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="emergency_contact_view">
+			<field name="name">Emergency Contact</field>
+			<field name="model">hr.employee</field>
+			<field name="inherit_id" ref="hr.view_employee_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//notebook/page[3]" position="after">
+					<page string="Emergency contact">
+						<group>	
+								<field name="emergency_phone"/>
+								<field name="emergency_contact"/>
+								<field name="emergency_relation"/>
+						</group>
+					</page>	
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>

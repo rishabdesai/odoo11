@@ -1,0 +1,37 @@
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="work_information_view">
+			<field name="name">Work Information</field>
+			<field name="model">hr.employee</field>
+			<field name="inherit_id" ref="hr.view_employee_form"/>
+			<field name="arch" type="xml">
+				
+				<xpath expr="//field[@name='work_phone']" position="after">
+							
+								<field name="related_customer"/>								
+								<field name="related_vendor"/>
+								<field name="employee_code"/>
+														
+				</xpath>
+
+				<xpath expr="//notebook/page[1]/group" position="inside">
+							<group string="Joining Details">
+								<field name="joining_date"/>
+
+								<field name="offer_date"/>
+								<field name="confirmation_date"/>
+								<field name="Contract_end_date"/>
+								<field name="notice_in_days"/>
+								<field name="retirement_date"/>	
+							</group>
+				</xpath>
+
+				<xpath expr="//field[@name='resource_calendar_id']" position="after">
+								<field name="emp_grade"/>
+								<field name="emp_branch"/>
+								<field name="reports_to"/>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>

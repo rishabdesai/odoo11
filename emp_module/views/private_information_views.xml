@@ -1,0 +1,41 @@
+<odoo>
+<data>
+<record model="ir.ui.view" id="private_information_view">
+	<field name="name">Private Information</field>
+	<field name="model">hr.employee</field>
+	<field name="inherit_id" ref="hr.view_employee_form"/>
+	<field name="arch" type="xml">
+		<xpath expr="//field[@name='passport_id']" position="after">			
+			<field name="issue_date"/>
+			<field name="validUpto_date"/>
+			<field name="place_of_issue"/>							
+		</xpath>
+		<xpath expr="//field[@name='bank_account_id']" position="after">			
+			<field name="uan_number"/>
+			<field name="pan_number"/>
+			<field name="pf_number"/>							
+		</xpath>
+						
+		<xpath expr="//field[@name='address_home_id']" position= "before">
+			<field name="Personal_mobile_number"/>
+			<field name="Personal_email"/>
+			<field name="Prefered_mode_of_communication" widget='radio' options="{'horizontal': true}"/>
+		
+			<field name="current_address"/>
+		</xpath>
+	
+		<xpath expr="//field[@name='birthday']" position= "after">
+			<field name="age"/>
+		</xpath>
+
+		<xpath expr="//notebook/page[2]/group" position="inside">
+			<group string="Other Information">
+				<field name="blood_group"/>
+				<field name="family_background"/>
+				<field name="health_issues"/>
+			</group>
+		</xpath>
+	</field>
+</record>
+</data>
+</odoo>

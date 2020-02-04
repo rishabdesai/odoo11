@@ -1,0 +1,24 @@
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="exit_interview_view">
+			<field name="name">Exit Interview</field>
+			<field name="model">hr.employee</field>
+			<field name="inherit_id" ref="hr.view_employee_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//notebook/page[4]" position="after">
+					<page string="Exit Interview">
+						<group>
+								<field name='resignation_letter_date'/>
+								<field name='reason_for_leaving'/>
+								<field name='leave_encashed'/>
+								<field name='encashment_date'/>
+								<field name='interview_held_on'/>
+								<field name='new_workspace'/>
+								<field name='exit_feedback'/>
+						</group>	
+					</page>	
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>

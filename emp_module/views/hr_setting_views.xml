@@ -1,0 +1,40 @@
+<odoo>
+	<data>
+		
+	<record model="ir.ui.view" id="hr_settings_view">
+		<field name="name">HR Settings</field>
+		<field name="model">hr.employee</field>
+		<field name="inherit_id" ref="hr.view_employee_form"/>
+		<field name="arch" type="xml">
+
+			 <xpath expr="//notebook/page[3]/group" position="inside">
+				 <group string="Leaves">
+				 	<field name="remaining_legal_leaves"/>
+					<field name="leave_policy"/>
+					<field name="holiday_list"/>
+					<field name="default_shift"/>
+					<field name="leave_approval"/>
+				</group> 
+			</xpath> 
+
+			<xpath expr="//notebook/page[3]/group" position="inside">
+				 <group string="Salary">
+					<field name="salary_mode"/>
+				</group> 
+			</xpath>
+
+			<xpath expr="//notebook/page[3]/group" position="inside">
+				 <group string="BioData">
+					<field name="educational_qualification"/>
+					<field name="personal_biodata" filename="file_name"/>
+					<field name="file_name" invisible="1"/>
+					<field name="external_work_history"/>
+					<field name="internal_work_history"/>
+				</group> 
+			</xpath>
+			
+		</field>
+	</record>
+
+	</data>
+</odoo>

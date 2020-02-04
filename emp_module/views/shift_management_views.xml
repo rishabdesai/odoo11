@@ -1,0 +1,176 @@
+<odoo>
+<data>
+
+<!-- ##################### Shift time #################### -->
+<record id="shift_time_form" model="ir.ui.view">
+<field name="name">shift.time.form</field>
+<field name="model">shift.time</field>
+<field name="arch" type="xml">
+<form string="Shifts">
+<sheet>		
+	<group>
+	<field name="shift_name"/>
+	</group>
+	<group>
+	<field name="shift_start_time" widget="float_time"/>
+	<field name="shift_end_time" widget="float_time"/>
+	</group>
+</sheet>
+</form>		
+</field>	
+</record>	
+
+<record id="shift_time_tree" model="ir.ui.view">
+	<field name="name">shift.time.tree</field>
+	<field name="model">shift.time</field>
+	<field name="arch" type="xml">
+	<tree string="Shifts">
+		<field name="shift_name"/>		
+		<field name="shift_start_time" widget="float_time"/>
+		<field name="shift_end_time" widget="float_time"/>
+	</tree>		
+	</field>	
+</record>
+
+<record id="action_for_shift_menuitem_under_employees" model="ir.actions.act_window">
+	<field name="name">Shifts</field>
+	<field name="type">ir.actions.act_window</field>
+	<field name="res_model">shift.time</field>
+	<field name="view_type">form</field>
+	<field name="view_mode">tree,form</field>
+</record>	
+
+<menuitem id="shift_menuitem_under_employees" name="Shifts"
+			parent="hr.menu_hr_root" action="action_for_shift_menuitem_under_employees"/>
+
+<!-- ##################### Shift Date #################### -->
+
+<record id="shift_date_form" model="ir.ui.view">
+<field name="name">shift.date.form</field>
+<field name="model">shift.date</field>
+<field name="arch" type="xml">
+<form string="Shift Dates">
+<sheet>		
+	<group>
+		<field name="emp_names_id"/>
+	</group>
+	<group>
+		<field name="shift_start_date"/>
+		<field name="shift_end_date"/>
+	</group>
+</sheet>
+</form>		
+</field>	
+</record>	
+
+<record id="shift_date_tree" model="ir.ui.view">
+<field name="name">shift.date.tree</field>
+<field name="model">shift.date</field>
+<field name="arch" type="xml">
+	<tree string="Shift Dates">	
+		<field name="emp_names_id"/>
+		<field name="shift_start_date"/>
+		<field name="shift_end_date"/>
+	</tree>		
+</field>	
+</record>	
+
+<record id="action_shift_date" model="ir.actions.act_window">
+<field name="name">Shift Dates</field>
+<field name="type">ir.actions.act_window</field>
+<field name="res_model">shift.date</field>
+<field name="view_type">form</field>
+<field name="view_mode">tree,form</field>
+</record>
+
+<!-- ##################### all Shift Details #################### -->
+
+<record id="all_shift_details_form" model="ir.ui.view">
+<field name="name">all.shift.details.form</field>
+<field name="model">shift.date</field>
+<field name="arch" type="xml">
+<form string="All Shift Details">
+	<sheet>		
+	<group>
+		<field name="emp_names_id"/>
+	</group>
+	<group>
+		<field name="shift_name_id"/>
+		<field name="shift_start_date"/>
+		<field name="shift_end_date"/>
+	</group>
+	</sheet>
+</form>		
+</field>	
+</record>	
+
+<record id="all_shift_details_tree" model="ir.ui.view">
+<field name="name">all.shift.details.tree</field>
+<field name="model">shift.date</field>
+<field name="arch" type="xml">
+<tree string="All Shift Details">	
+	<field name="emp_names_id"/>
+	<field name="shift_name_id"/>
+	<field name="shift_start_date"/>
+	<field name="shift_end_date"/>
+</tree>		
+</field>	
+</record>	
+
+<record id="action_all_shifts_details_under_employees" model="ir.actions.act_window">
+	<field name="name">All Shifts Details</field>
+	<field name="type">ir.actions.act_window</field>
+	<field name="res_model">shift.date</field>
+	<field name="view_type">form</field>
+	<field name="view_mode">tree,form</field>
+</record>	
+
+<menuitem id="all_shift_details_menuitem" name="All Shifts Details"
+			parent="hr.menu_hr_root" action="action_all_shifts_details_under_employees"/>
+
+<!-- ##################### inherited view of shift.time to hr.employee #################### -->
+
+<record id="shift_time_inherit_form" model="ir.ui.view">
+	<field name="name">shift.time.inherit.form</field>
+	<field name="model">hr.employee</field>
+	<field name="inherit_id" ref="hr.view_employee_form"/>
+	<field name="arch" type="xml">
+		<xpath expr="//notebook/page[1]/group" position="inside">
+		<group string="Shifts">
+			<field name="shift_name_inherited"/>	
+			<field name="shift_start_time_inherited" force_save='1'/>
+			<field name="shift_end_time_inherited" force_save='1'/>
+		</group>
+	</xpath>	
+	</field>		
+</record>
+
+<record id="shift_time_inherit_tree" model="ir.ui.view">
+	<field name="name">shift.time.inherit.tree</field>
+	<field name="model">hr.employee</field>
+	<field name="inherit_id" ref="hr.view_employee_tree"/>
+	<field name="arch" type="xml">
+		<field name="parent_id" position="after">
+			<field name="shift_name_inherited"/>
+		</field>
+	</field>	
+</record>
+
+<!-- ##################### smart button for shift #################### -->
+
+<record id="smart_button_for_shift" model="ir.ui.view" >
+<field name="name">smart.button.for.shift</field>
+<field name="model">hr.employee</field>
+<field name="inherit_id" ref="hr.view_employee_form"/>
+<field name="arch" type="xml">
+<div class="oe_button_box" name="button_box">
+ <button name="shift_smart_button" string="Shift" 
+ 	type="object" groups="hr.group_hr_user" 
+ 	class="oe_stat_button" icon="fa-clock-o">   
+</button>
+</div>
+</field>
+</record>  
+
+</data>
+</odoo>
